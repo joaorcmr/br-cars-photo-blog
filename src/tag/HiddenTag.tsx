@@ -1,0 +1,39 @@
+import { TAG_HIDDEN } from '.';
+import { pathForTag } from '@/app/paths';
+import EntityLink, {
+  EntityLinkExternalProps,
+} from '@/components/primitives/EntityLink';
+import { AiOutlineEyeInvisible } from 'react-icons/ai';
+
+export default function HiddenTag({
+  type,
+  badged,
+  contrast,
+  prefetch,
+  countOnHover,
+  className,
+}: {
+  countOnHover?: number
+} & EntityLinkExternalProps) {
+  return (
+    <EntityLink
+      label={badged
+        ? <span className="inline-flex items-center gap-1">
+          {TAG_HIDDEN}
+          <AiOutlineEyeInvisible
+            size={13}
+            className="translate-y-[-0.5px]"
+          />
+        </span>
+        : TAG_HIDDEN}
+      href={pathForTag(TAG_HIDDEN)}
+      icon={!badged && <AiOutlineEyeInvisible size={16} />}
+      type={type}
+      className={className}
+      hoverEntity={countOnHover}
+      badged={badged}
+      contrast={contrast}
+      prefetch={prefetch}
+    />
+  );
+}
