@@ -68,6 +68,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Verificar se está em ambiente de produção
+  const isProd = process.env.NODE_ENV === 'production';
+  
   return (
     <html
       lang="en"
@@ -108,8 +111,8 @@ export default function RootLayout({
               </main>
               <CommandK />
             </SwrConfigClient>
-            <Analytics debug={false} />
-            <SpeedInsights debug={false}  />
+            {isProd && <Analytics debug={false} />}
+            {isProd && <SpeedInsights debug={false} />}
             <PhotoEscapeHandler />
             <ToasterWithThemes />
           </ThemeProvider>
